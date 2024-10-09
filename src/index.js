@@ -9,31 +9,31 @@ import NouveauAthletes from "./Pages/Afiiliation/NouveauAthletes";
 import Performance from "./Pages/Suivie/Performance";
 import Presence from "./Pages/Suivie/Presence";
 
-import Coachpresence from "./Pages/Coach/Coachpresence";
+import Coachcalendrier from "./Pages/Coach/Coachcalendrier";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
   {
-    path: "/",
+    path: "/Affiliation",
     element: <AncienAtheletes />,
   },
   {
-    path: "/",
+    path: "/Affiliation",
     element: <NouveauAthletes />,
   },
   {
-    path: "/",
+    path: "/Suivie",
     element: <Performance />,
   },
   {
-    path: "/",
+    path: "/Suivie",
     element: <Presence />,
   },
   {
-    path: "/",
-    element: <Coachpresence />,
+    path: "Coach/",
+    element: <Coachcalendrier />,
   },
 ]);
 

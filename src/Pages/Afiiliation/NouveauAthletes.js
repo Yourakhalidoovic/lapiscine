@@ -5,7 +5,7 @@ function NouveauAthletes() {
   const [NouveauAtheletes, setNouveauAtheletes] = useState({
     name: "",
     email: "",
-    swimmingGoals: "",
+    Goals: "",
     contactInformation: "",
   });
 
@@ -45,13 +45,13 @@ function NouveauAthletes() {
           />
         </label>
         <label>
-          Swimming Goals:
+          Goals:
           <textarea
             value={NouveauAtheletes.swimmingGoals}
             onChange={(event) =>
               setNouveauAtheletes({
                 ...NouveauAtheletes,
-                swimmingGoals: event.target.value,
+                Goals: event.target.value,
               })
             }
           />

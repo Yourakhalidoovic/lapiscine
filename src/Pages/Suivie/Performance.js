@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, axios } from "react";
+import { useState } from "react";
 
 function Performance() {
   const [performanceData, setPerformanceData] = useState({
@@ -8,17 +8,6 @@ function Performance() {
     strokes: [],
   });
 
-  useEffect(() => {
-    axios
-      .get("/api/performance")
-      .then((response) => {
-        setPerformanceData(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   const handleAddTime = (event) => {
     event.preventDefault();
     const newTime = {
@@ -26,40 +15,44 @@ function Performance() {
       distance: event.target.distance.value,
       stroke: event.target.stroke.value,
     };
-    axios
-      .post("/api/performance", newTime)
-      .then((response) => {
-        setPerformanceData([...performanceData, response.data]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  };
+  const [presence, setPresence] = useState({
+    date: "",
+    time: "",
+    location: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Save presence data to database or API
   };
 
   return (
     <div>
-      <h1>Performance</h1>
+      <h1 className="h">Performance</h1>
       <form onSubmit={handleAddTime}>
         <label>
           Time:
-          <input type="time" name="time" />
+          <input className="input" type="time" name="time" />
         </label>
         <label>
           Distance:
-          <input type="number" name="distance" />
+          <input className="input" type="number" name="distance" />
         </label>
         <label>
           Stroke:
-          <select name="stroke">
+          <select className="input" name="stroke">
             <option value="Freestyle">Freestyle</option>
             <option value="Backstroke">Backstroke</option>
             <option value="Breaststroke">Breaststroke</option>
             <option value="Butterfly">Butterfly</option>
           </select>
         </label>
-        <button type="submit">Add Time</button>
+        <button className="button" type="submit">
+          Add Time
+        </button>
       </form>
-      <h2>Times:</h2>
+      <h2 className="h">Times:</h2>
       <ul>
         {performanceData.times.map((time, index) => (
           <li key={index}>
@@ -67,6 +60,45 @@ function Performance() {
           </li>
         ))}
       </ul>
+      <h1 className="h">Presence</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Date:
+          <input
+            className="input"
+            type="date"
+            value={presence.date}
+            onChange={(event) =>
+              setPresence({ ...presence, date: event.target.value })
+            }
+          />
+        </label>
+        <label>
+          Time:
+          <input
+            className="input"
+            type="time"
+            value={presence.time}
+            onChange={(event) =>
+              setPresence({ ...presence, time: event.target.value })
+            }
+          />
+        </label>
+        <label>
+          Location:
+          <input
+            className="input"
+            type="text"
+            value={presence.location}
+            onChange={(event) =>
+              setPresence({ ...presence, location: event.target.value })
+            }
+          />
+        </label>
+        <button className="button" type="submit">
+          Save Presence
+        </button>
+      </form>
     </div>
   );
 }

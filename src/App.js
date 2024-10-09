@@ -1,6 +1,5 @@
 import "./App.css";
 import { Link } from "react-router-dom";
-import Coachpresence from "./Pages/Coach/Coachpresence";
 
 function App() {
   return (
@@ -10,17 +9,20 @@ function App() {
           <div className="container mx-auto flex justify-between items-center">
             <ul className="flex items-center">
               <li className="mr-6">
-                <Link href="#" className="text-white hover:text-gray-300">
+                <Link
+                  to="/Affiliation"
+                  className="text-white hover:text-gray-300"
+                >
                   Affiliation
                 </Link>
               </li>
               <li className="mr-6">
-                <Link href="#" className="text-white hover:text-gray-300">
+                <Link to="/Suivie" className="text-white hover:text-gray-300">
                   Suivie
                 </Link>
               </li>
               <li className="mr-6">
-                <Link href="#" className="text-white hover:text-gray-300">
+                <Link to="/Coach" className="text-white hover:text-gray-300">
                   Coach
                 </Link>
               </li>
@@ -34,7 +36,7 @@ function App() {
       >
         <div className="hero container mx-auto p-4 pt-6 md:p-6 lg:p-12 xl:p-24">
           <h1 className="hero__title text-3xl font-bold text-white leading-tight md:text-5xl lg:text-6xl xl:text-7xl">
-            Sportive Club
+            Challange Academy
           </h1>
           <p className="hero__subtitle text-lg text-white leading-relaxed md:text-xl lg:text-2xl xl:text-3xl">
             Bienvenue a vous et a vos membre de famille .
@@ -42,9 +44,9 @@ function App() {
         </div>
       </div>
       <div className="mon_grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <div className="mon_grid_item    bg-gray-200 p-4 rounded">
+        <div className="mon_grid_item1   bg-gray-200 p-4 rounded">
           <h2 className="text-lg font-bold mb-2">Football</h2>
-          <img src="judo.jpg" />
+
           <p className="text-gray-600">
             Nous avons le grand plaisir de vous avoir parmi nous. De la part de
             tous les membres et de la direction, nous aimerions vous présenter
@@ -52,9 +54,9 @@ function App() {
             dans cette équipe ! Nous sommes ravis de vous avoir parmi nous.
           </p>
         </div>
-        <div className=" mon_grid_item   bg-gray-200 p-4 rounded">
+        <div className=" mon_grid_item2   bg-gray-200 p-4 rounded">
           <h2 className="text-lg font-bold mb-2">Natation</h2>
-          <img src="judo1.jpg" alt="Judo photo 1" />
+
           <p className="text-gray-600">
             Les entraînements de Natation Sportive sont organisés par groupe de
             niveau et dirigés par des entraîneurs diplômés d'État. Ce sont les
@@ -63,19 +65,6 @@ function App() {
             autant d'entrainements que vous désirez dans les créneaux proposés
             de votre groupe de niveau. Notre souhait le plus cher est bien
             entendu de vous donner l'envie de venir le plus souvent possible.
-          </p>
-        </div>
-        <div className=" mon_grid_item   bg-gray-200 p-4 rounded">
-          <h2 className="text-lg font-bold mb-2">Judo</h2>
-          <img src="judo.jpg" url="photo" />
-          <p className="text-gray-600">
-            Le judo commence et se termine par le salut, appelé « rei ». Ce
-            salut signifie la dignité et la paix intérieure avant comme après le
-            combat. Il annonce aussi le respect des règles ainsi que la droiture
-            et la sincérité. Le judoka devrait saluer lentement, gravement et
-            faire en sorte de montrer le respect à celui qu'il salue. Un salut
-            oublié ou mal exécuté, est le signe d'un judo mal compris et
-            superficiel.
           </p>
         </div>
       </div>
@@ -100,13 +89,13 @@ function App() {
               <h5>Quick Links</h5>
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <Link to="/Affiliation">Affiliation</Link>
                 </li>
                 <li>
-                  <a href="#">About</a>
+                  <Link to="/Suivie">Suivie</Link>
                 </li>
                 <li>
-                  <a href="#">Contact</a>
+                  <Link to="/Coach">Coach</Link>
                 </li>
               </ul>
             </div>

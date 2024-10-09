@@ -1,4 +1,75 @@
 @tailwind;
+:root {
+  --primary-color: #3498db; /* blue */
+  --secondary-color: #f1c40f; /* orange */
+  --accent-color: #e74c3c; /* red */
+  --background-color: #f7f7f7; /* light gray */
+  --text-color: #333; /* dark gray */
+}
+
+body {
+  /* Set the background color */
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.app-container {
+  /* Add a container to hold the application content */
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header {
+  /* Style the application header */
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+.app-header h1 {
+  /* Style the application title */
+  font-size: 24px;
+  margin: 0;
+}
+
+.app-content {
+  /* Style the application content */
+  padding: 20px;
+}
+
+.app-content h2 {
+  /* Style the section titles */
+  font-size: 18px;
+  margin-top: 20px;
+  color: var(--secondary-color);
+}
+
+.app-content p {
+  /* Style the paragraph text */
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.button {
+  /* Style the buttons */
+  background-color: var(--accent-color);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e74c3c;
+}
 
 .App {
   text-align: center;
@@ -14,6 +85,9 @@
   color: #fff;
   padding: 20px;
   text-align: center;
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   position: fixed;
   top: 0;
   left: 0;
@@ -69,7 +143,11 @@
 }
 .mon_grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  background-color: rgba(255, 255, 255, 0.2);
+  font-family: "Protest Strike", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 10px;
@@ -80,8 +158,36 @@
 .mon_grid:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
-.mon_grid_item {
-  background-color: #fff;
+.mon_grid_item1 {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("football.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.mon_grid_item:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.mon_grid_item2 {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("natation.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
