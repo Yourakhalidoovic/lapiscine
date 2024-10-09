@@ -1,10 +1,40 @@
+import { useState } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 
 function App() {
+  const [email, setEmail] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Send a POST request to the backend API to subscribe the user
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setSuccess(true);
+      } else {
+        setError(data.error);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  const photos = [
+    { src: "football.jpg", alt: "Photo 1" },
+    { src: "challange_academy.png", alt: "Photo 2" },
+    { src: "photo3.jpg", alt: "Photo 3" },
+    // Add more photos to the array
+  ];
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="appHeader">
         <nav className="bg-gray-800 py-4">
           <div className="container mx-auto flex justify-between items-center">
             <ul className="flex items-center">
@@ -67,21 +97,48 @@ function App() {
             entendu de vous donner l'envie de venir le plus souvent possible.
           </p>
         </div>
+        <div className="photo-container">
+          {photos.map((photo, index) => (
+            <img
+              key={index}
+              src={photo.src}
+              alt={photo.alt}
+              className="photo-item"
+            />
+          ))}
+        </div>
       </div>
       <footer className="footer">
+        <div>
+          <p>Abonnez vous a notre newsletter ! </p>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="newsletter-input "
+              type="email"
+              placeholder=" @ email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <button className="subscribe-button " type="submit">
+              Subscribe
+            </button>
+          </form>
+          {success ? <p>Thank you for subscribing!</p> : null}
+          {error ? <p>Error: {error}</p> : null}
+        </div>
         <div className="footer-container">
           <div className="footer-row">
             <div className="footer-col">
               <h5>About Us</h5>
               <ul>
                 <li>
-                  <a href="#">Our Story</a>
+                  <Link to="/history">Our Story</Link>
                 </li>
                 <li>
-                  <a href="#">Our Team</a>
+                  <Link to="/team">Our Team</Link>
                 </li>
                 <li>
-                  <a href="#">Our Mission</a>
+                  <Link to="/mission">Our Mission </Link>
                 </li>
               </ul>
             </div>
@@ -103,13 +160,36 @@ function App() {
               <h5>Social Media</h5>
               <div className="footer-social">
                 <a href="#" target="_blank">
-                  <i className="fa fa-facebook"></i>
+                  <img
+                    width="48"
+                    height="48"
+                    src="https://img.icons8.com/color/48/facebook-new.png"
+                    alt="facebook-new"
+                  />
                 </a>
                 <a href="#" target="_blank">
-                  <i className="fa fa-twitter"></i>
+                  <img
+                    width="48"
+                    height="48"
+                    src="https://img.icons8.com/color/48/whatsapp.png"
+                    alt="whatsapp"
+                  />
                 </a>
                 <a href="#" target="_blank">
-                  <i className="fa fa-instagram"></i>
+                  <img
+                    width="48"
+                    height="48"
+                    src="https://img.icons8.com/color/48/twitter--v1.png"
+                    alt="twitter--v1"
+                  />
+                </a>
+                <a href="#" target="_blank">
+                  <img
+                    width="48"
+                    height="48"
+                    src="https://img.icons8.com/fluency/48/instagram-new.png"
+                    alt="instagram-new"
+                  />
                 </a>
               </div>
             </div>
@@ -117,19 +197,19 @@ function App() {
               <h5>Contact Us</h5>
               <ul>
                 <li>
-                  <a href="#">Email</a>
+                  <Link to="/Email">Email</Link>
                 </li>
                 <li>
-                  <a href="#">Phone</a>
+                  <Link to="/Phone">Phone</Link>
                 </li>
                 <li>
-                  <a href="#">Address</a>
+                  <Link to="/Address">Address</Link>
                 </li>
               </ul>
             </div>
           </div>
           <div className="footer-copyright">
-            &copy; 2024 All Rights Reserved.
+            &copy; 2024 Challange Academy All Rights Reserved.
           </div>
         </div>
       </footer>
