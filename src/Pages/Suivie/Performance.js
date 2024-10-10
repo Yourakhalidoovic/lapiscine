@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 function Performance() {
   const [performanceData, setPerformanceData] = useState({
@@ -7,15 +7,18 @@ function Performance() {
     distances: [],
     strokes: [],
   });
+  const [isSaving, setIsSaving] = useState(false);
+  const [presenceSaved, setPresenceSaved] = useState(false);
 
-  const handleAddTime = (event) => {
-    event.preventDefault();
-    const newTime = {
-      time: event.target.time.value,
-      distance: event.target.distance.value,
-      stroke: event.target.stroke.value,
-    };
+  const handleSavePresence = () => {
+    setIsSaving(true);
+    // Call API or perform action to save presence
+    setTimeout(() => {
+      setIsSaving(false);
+      setPresenceSaved(true);
+    }, 2000); // Simulate API call delay
   };
+
   const [presence, setPresence] = useState({
     date: "",
     time: "",
@@ -26,6 +29,25 @@ function Performance() {
     event.preventDefault();
     // Save presence data to database or API
   };
+  const [time, setTime] = useState(0);
+  const [addingTime, setAddingTime] = useState(false);
+
+  const handleAddTime = () => {
+    setAddingTime(true);
+    // Simulate time-consuming operation (e.g. API call or complex calculation)
+    setTimeout(() => {
+      setTime(time + 1);
+      setAddingTime(false);
+    }, 500); // Simulate delay
+  };
+
+  const buttonText = useMemo(() => {
+    if (addingTime) {
+      return "Adding time...";
+    } else {
+      return `Add Time `;
+    }
+  }, [addingTime, time]);
 
   return (
     <div>
@@ -48,11 +70,16 @@ function Performance() {
             <option value="Butterfly">Butterfly</option>
           </select>
         </label>
-        <button className="button" type="submit">
-          Add Time
+        <button
+          onClick={handleAddTime}
+          disabled={addingTime}
+          className="button"
+          type="submit"
+        >
+          {buttonText}
         </button>
       </form>
-      <h2 className="h">Times:</h2>
+      <h2 className="h">Times:({time} seconds)</h2>
       <ul>
         {performanceData.times.map((time, index) => (
           <li key={index}>
@@ -95,8 +122,14 @@ function Performance() {
             }
           />
         </label>
-        <button className="button" type="submit">
-          Save Presence
+        <button
+          onClick={handleSavePresence}
+          disabled={isSaving}
+          className="button"
+          type="submit"
+        >
+          {isSaving ? "Saving..." : "Save Presence"}
+          {presenceSaved && <span style={{ color: "green" }}> Saved!</span>}
         </button>
       </form>
     </div>

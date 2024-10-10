@@ -49,7 +49,20 @@ body {
   margin-top: 20px;
   color: var(--secondary-color);
 }
-
+@media (max-width: 768px) {
+  body {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  body {
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px;
+  }
+}
 .app-content p {
   /* Style the paragraph text */
   font-size: 14px;

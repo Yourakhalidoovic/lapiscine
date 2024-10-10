@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
+import PhotoGallery from "./components/PhotoGallery";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -26,12 +27,7 @@ function App() {
       setError(error.message);
     }
   };
-  const photos = [
-    { src: "football.jpg", alt: "Photo 1" },
-    { src: "challange_academy.png", alt: "Photo 2" },
-    { src: "photo3.jpg", alt: "Photo 3" },
-    // Add more photos to the array
-  ];
+
   return (
     <div className="App">
       <header className="appHeader">
@@ -97,17 +93,9 @@ function App() {
             entendu de vous donner l'envie de venir le plus souvent possible.
           </p>
         </div>
-        <div className="photo-container">
-          {photos.map((photo, index) => (
-            <img
-              key={index}
-              src={photo.src}
-              alt={photo.alt}
-              className="photo-item"
-            />
-          ))}
-        </div>
+        
       </div>
+      <PhotoGallery />
       <footer className="footer">
         <div>
           <p>Abonnez vous a notre newsletter ! </p>

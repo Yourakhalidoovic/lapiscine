@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Presence from "../Suivie/Presence";
 
 function Coachcalendrier() {
@@ -20,6 +20,45 @@ function Coachcalendrier() {
       experience: event.target.experience.value,
       certifications: event.target.certifications.value,
     };
+  };
+  const [presence, setPresence] = useState({
+    online: false,
+    lastSeen: null,
+  });
+
+  const [absence, setAbsence] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+  useEffect(() => {
+    // Simulate API call to fetch coach presence data
+    const fetchPresenceData = async () => {
+      const response = await fetch("/api/coach-presence");
+      const data = await response.json();
+      setPresence(data);
+    };
+    fetchPresenceData();
+  }, []);
+
+  const handleTogglePresence = () => {
+    setPresence({ online: !presence.online, lastSeen: new Date() });
+  };
+
+  const handleSetAbsence = () => {
+    // Simulate API call to set coach absence data
+    const setAbsenceData = async () => {
+      const response = await fetch("/api/coach-absence", {
+        method: "POST",
+        body: JSON.stringify({
+          startDate: absence.startDate,
+          endDate: absence.endDate,
+        }),
+      });
+      const data = await response.json();
+      setAbsence(data);
+    };
+    setAbsenceData();
   };
 
   return (
@@ -80,6 +119,44 @@ function Coachcalendrier() {
           Update Coach
         </button>
       </form>
+      <div>
+        <h2>Coach Presence and Absence</h2>
+        <p>
+          Current Presence: {presence.online ? "Online" : "Offline"} (
+          {presence.lastSeen ? `Last seen: ${presence.lastSeen}` : "Never"})
+        </p>
+        <button className="button" onClick={handleTogglePresence}>
+          {presence.online ? "Go Offline" : "Go Online"}
+        </button>
+        <h3>Absence</h3>
+        <p>
+          Start Date:{" "}
+          {absence.startDate
+            ? absence.startDate.toLocaleDateString()
+            : "Not set"}
+          End Date:{" "}
+          {absence.endDate ? absence.endDate.toLocaleDateString() : "Not set"}
+        </p>
+        <button className="button" onClick={handleSetAbsence}>
+          Set Absence
+        </button>
+        <input
+          className="input"
+          type="date"
+          value={absence.startDate}
+          onChange={(e) =>
+            setAbsence({ ...absence, startDate: new Date(e.target.value) })
+          }
+        />
+        <input
+          className="input"
+          type="date"
+          value={absence.endDate}
+          onChange={(e) =>
+            setAbsence({ ...absence, endDate: new Date(e.target.value) })
+          }
+        />
+      </div>
     </div>
   );
 }
