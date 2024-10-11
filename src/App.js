@@ -57,7 +57,7 @@ function App() {
         </nav>
       </header>
       <div
-        className="h-screen bg-cover bg-center"
+        className=" h-screen bg-cover bg-center"
         style={{ backgroundImage: "url(https://picsum.photos/2000/1000)" }}
       >
         <div className="hero container mx-auto p-4 pt-6 md:p-6 lg:p-12 xl:p-24">
@@ -80,6 +80,39 @@ function App() {
             dans cette équipe ! Nous sommes ravis de vous avoir parmi nous.
           </p>
         </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "brown",
+            }}
+          ></div>
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "yellow",
+            }}
+          ></div>
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "grey",
+            }}
+          ></div>
+        </div>
         <div className=" mon_grid_item2   bg-gray-200 p-4 rounded">
           <h2 className="text-lg font-bold mb-2">Natation</h2>
 
@@ -93,7 +126,39 @@ function App() {
             entendu de vous donner l'envie de venir le plus souvent possible.
           </p>
         </div>
-        
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "red",
+            }}
+          ></div>
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "green",
+            }}
+          ></div>
+          <div
+            style={{
+              borderRadius: "10px",
+              width: "200px",
+              height: "150px",
+              backgroundColor: "blue",
+            }}
+          ></div>
+        </div>
       </div>
       <PhotoGallery />
       <footer className="footer">
